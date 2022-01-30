@@ -3,10 +3,14 @@ import PropTypes from "prop-types";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
 import { useState } from "react";
+import RatingSelect from "./RatingSelect";
 const FeedbackForm = (props) => {
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
+  const [rating, setRating] = useState(10) 
+
+
   const handleTextChange = (val) => {
   
     setText(val);
@@ -21,7 +25,7 @@ const FeedbackForm = (props) => {
     <Card>
       <form>
         <h2>How would you rate your service with us?</h2>
-
+    <RatingSelect select = {rating => setRating(rating)}/>
         <div className="input-group">
           <input
             onChange={(e) => handleTextChange(e.target.value)}
