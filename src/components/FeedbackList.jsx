@@ -1,5 +1,7 @@
 import React from 'react';
 import FeedbackItem from './FeedbackItem';
+import { motion, AnimatePresence  } from "framer-motion"
+
 function FeedbackList({list, handleDelete}) {
 
    

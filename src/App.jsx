@@ -5,6 +5,10 @@ import FeedbackData from "./data/feedbackData"
 import FeedbackForm from "./components/FeedbackForm"
 import FeedbackStats from "./components/FeedbackStats"
 import { v4 as uuidv4 } from 'uuid';
+import AboutPage from "./pages/AboutPage"
+import {BrowserRouter as Router, Route, Routes, NavLink} from 'react-router-dom'
+import AboutIconLink from "./components/AboutIconLink"
+import Card from "./components/shared/Card"
 function App(){
     
 
@@ -36,8 +40,13 @@ function App(){
         <FeedbackStats feedback = {feedback}/>
    <FeedbackList list={feedback} handleDelete={(id)=> deleteFeedback(id)}></FeedbackList>
    
+   <Router>
+
+<AboutIconLink/>
+</Router>
     </div>
     
+
     </>
     )
 }
