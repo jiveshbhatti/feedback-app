@@ -4,7 +4,8 @@ import Card from "./shared/Card";
 import Button from "./shared/Button";
 import { useState } from "react";
 import RatingSelect from "./RatingSelect";
-const FeedbackForm = (props) => {
+import { v4 as uuidv4 } from 'uuid';
+const FeedbackForm = ({handleAdd}) => {
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
@@ -21,9 +22,23 @@ const FeedbackForm = (props) => {
       setMessage(null);
     }
   };
+
+  const handleSubmit = (e) => {
+      e.preventDefault()
+  
+      const newFeedback = {
+          text,
+          rating,
+      }
+
+   
+      handleAdd(newFeedback)
+
+      setText('')
+  }
   return (
     <Card>
-      <form>
+      <form onSubmit={(e)=>handleSubmit(e)}>
         <h2>How would you rate your service with us?</h2>
     <RatingSelect select = {rating => setRating(rating)}/>
         <div className="input-group">
