@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './shared/Card';
-
+import Button from './shared/Button';
 import { useState } from 'react';
 const FeedbackForm = (props) => {
 
@@ -22,9 +22,9 @@ const FeedbackForm = (props) => {
               value={
                   text
               } type="text" placeholder='Write a review' />
-              <button type="submit">
+              <Button type="submit" version='primary' >
                   Send
-              </button>
+              </Button>
           </div>
       </form>
   </Card>
