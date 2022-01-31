@@ -5,12 +5,15 @@ import Button from "./shared/Button";
 import { useState } from "react";
 import RatingSelect from "./RatingSelect";
 import { v4 as uuidv4 } from 'uuid';
-const FeedbackForm = ({handleAdd}) => {
+import FeedbackContext from "./context/FeedbackContext";
+import { useContext } from "react";
+const FeedbackForm = () => {
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(10) 
 
+  const {addFeedback} = useContext(FeedbackContext)
 
   const handleTextChange = (val) => {
   
@@ -32,7 +35,7 @@ const FeedbackForm = ({handleAdd}) => {
       }
 
    
-      handleAdd(newFeedback)
+      addFeedback(newFeedback)
 
       setText('')
   }
