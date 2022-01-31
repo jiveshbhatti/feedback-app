@@ -6,14 +6,28 @@ import { useState } from "react";
 import RatingSelect from "./RatingSelect";
 import { v4 as uuidv4 } from 'uuid';
 import FeedbackContext from "./context/FeedbackContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { set } from "mongoose";
 const FeedbackForm = () => {
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(10) 
 
-  const {addFeedback} = useContext(FeedbackContext)
+  const {addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext)
+ 
+  //! Use Effect hook being used.
+
+  useEffect(()=>{
+    if(feedbackEdit.edit === true){
+      setBtnDisabled(false)
+      setText(feedbackEdit.item.text)
+      setRating(feedbackEdit.item.rating)
+    }
+   
+   
+  }, [feedbackEdit])
+
 
   const handleTextChange = (val) => {
   
@@ -34,9 +48,11 @@ const FeedbackForm = () => {
           rating,
       }
 
-   
+      if(feedbackEdit.edit=== true){
+        updateFeedback(feedbackEdit.item.id, newFeedback)
+      }else{
       addFeedback(newFeedback)
-
+      }
       setText('')
   }
   return (
